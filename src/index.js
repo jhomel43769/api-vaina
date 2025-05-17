@@ -1,7 +1,7 @@
 import express from "express"
 import cors from "cors"
 import morgan from "morgan"
-import {connectDb} from "./db.js"
+import { sequelize } from "./db.js";
 
 const app = express();
 
@@ -11,13 +11,14 @@ app.use(morgan('dev'))
 
 const PORT = process.env.PORT || 3000
 
+
 try {
-    await connectDb.query('select 1');
-    console.log('Conexion con la base de datos exitosa')
+    await sequelize.query('select 1');
+    console.log('Conexion con la base de datos existosa')
 } catch (err) {
-    console.error('Error al conectar la base de datos', err.message);
+    console.error('Error al conectase con la base de datos', err.message)
     throw err;
-} 
+}
 
 app.get('/api', (req, res) => {
     res.send('la api funca')
