@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import morgan from "morgan"
 import { sequelize } from "./db.js";
-
+import { router } from "./routes/auth.routes.js";
 const app = express();
 
 app.use(express.json());
@@ -20,9 +20,7 @@ try {
     throw err;
 }
 
-app.get('/api', (req, res) => {
-    res.send('la api funca')
-})
+app.use('/api', router)
 
 app.listen(PORT, () => {
     console.log(`Server running on PORT: ${PORT}`)
