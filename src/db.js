@@ -1,9 +1,18 @@
-import mysql2 from "mysql2/promise";
+import { Sequelize } from "sequelize";
 
-export const connectDb = await mysql2.createPool({
-    host:'localhost',
-    user:'root',
-    database:'friendship_app',
-    password:'root'
-})
-
+export const sequelize = new Sequelize(
+  "friendship_app", 
+  "root",            
+  "root",           
+  {
+    host: "localhost",
+    dialect: "mysql",
+    logging: false,   
+    pool: {
+      max: 5,        
+      min: 0,
+      acquire: 300,
+      idle: 100,
+    },
+  }
+);
