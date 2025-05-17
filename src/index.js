@@ -3,6 +3,8 @@ import cors from "cors"
 import morgan from "morgan"
 import { sequelize } from "./db.js";
 import { router } from "./routes/auth.routes.js";
+import './models/indexModel.js'; 
+
 const app = express();
 
 app.use(express.json());
