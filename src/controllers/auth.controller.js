@@ -1,6 +1,8 @@
 import { Op } from "sequelize";
 import {User} from "../models/user.model.js"
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
+
 export const register = async (req, res) => {
     try {
         const {username, email, password} = req.body;
@@ -57,7 +59,13 @@ export const login = async (req, res) => {
         const userData = user.get({ plain: true });
         delete userData.password;
 
-        res.status(201).json({message: "inicio de seccion exitoso"})
+        const token = jwt.sign(
+            {id: user.id, username: user.username},
+            process.env.JWT_SECRET || "o&!PR8TueJ@M9Fr7J7udSf",
+            {expiresIn: '1h'}
+        )
+
+        res.status(201).json({message: "inicio de seccion exitoso", token})
 
     } catch (err) {
         console.error("Error en login:", err);
