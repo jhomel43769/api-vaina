@@ -15,7 +15,7 @@ export const register = async (req, res) => {
             }
         })
         if (existingUser) {
-            return res.status(400).json({error: "Usuario o contraseña ya están en uso"});
+            return res.status(400).json({error: "Usuario o email ya están en uso"});
         }
         const createdUser = await User.create({
             username,
