@@ -1,9 +1,8 @@
 import { sequelize } from '../db.js';
 import { User } from './user.model.js';
 import { FriendshipRequest } from './friendshipRequest.model.js';
-import { setupRelations } from './relacion.js';  // o como hayas llamado al archivo de relaciones
+import { setupRelations } from './relacion.js';
 
-// Configura las relaciones entre los modelos
 setupRelations();
 
 // Sincroniza la base con los modelos (solo para desarrollo)

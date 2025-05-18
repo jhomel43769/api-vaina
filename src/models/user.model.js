@@ -6,12 +6,10 @@ export const User = sequelize.define('User', {
   username: {
     type: DataTypes.STRING(100),
     allowNull: false,
-    unique: true
   },
   email: {
     type: DataTypes.STRING(100),
     allowNull: false,
-    unique: true
   },
   password: {
     type: DataTypes.STRING(255),
@@ -31,8 +29,8 @@ export const User = sequelize.define('User', {
       user.password = await bcrypt.hash(user.password, salt);
     },
   },
-  timestamps: false, // Desactivamos los timestamps automáticos
-  tableName: 'users', // Forzamos el nombre de la tabla
-  freezeTableName: true, // Evitamos la pluralización
-  underscored: true // Usamos snake_case para los campos
+  timestamps: false,
+  tableName: 'users', 
+  freezeTableName: true,
+  underscored: true
 });

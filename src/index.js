@@ -2,7 +2,8 @@ import express from "express"
 import cors from "cors"
 import morgan from "morgan"
 import { sequelize } from "./db.js";
-import { router } from "./routes/auth.routes.js";
+import { authRouter, } from "./routes/auth.routes.js";
+import {friendshipRouter} from "./routes/friendship.routes.js"
 import './models/indexModel.js'; 
 
 const app = express();
@@ -22,7 +23,8 @@ try {
     throw err;
 }
 
-app.use('/api', router)
+app.use('/api/auth', authRouter)
+app.use('/api/friends', friendshipRouter)
 
 
 app.listen(PORT, () => {
