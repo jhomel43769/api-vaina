@@ -1,5 +1,6 @@
 import express from  "express"
 import {sendFriendRequest, respondToFriendRequest, getReceivedFriendRequests, getSentFriendRequests, getFriends } from "../controllers/friendship.controller.js"
+import { blockFriend, getBlockedUsers } from "../controllers/blockFriend.controller.js";
 import { verifyToken } from "../middlewares/authMiddleware.js";
 
 
@@ -17,3 +18,7 @@ friendshipRouter.get('/getReceivedFriendRequests', getReceivedFriendRequests)
 friendshipRouter.get('/getSentFriendRequests',getSentFriendRequests )
 
 friendshipRouter.get('/getFriends', getFriends)
+
+friendshipRouter.post('/blockFriend/:friendId', blockFriend);
+
+friendshipRouter.get('/getBlockedUsers', getBlockedUsers);

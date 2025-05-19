@@ -73,3 +73,21 @@ export const login = async (req, res) => {
             error: "Error interno del servidor",});
     }
 };
+
+export const deleteUser = async (req, res) => {
+    try {
+        const userId = req.user.id;
+
+        const user = await User.findByPk(userId);
+        if (!user) {
+            return res.status(404).json({ error: "Usuario no encontrado" });
+        }
+
+        await user.destroy();
+
+        res.status(200).json({ message: "Usuario eliminado con éxito" });
+    } catch (err) {
+        console.error("Error al eliminar usuario:", err);
+        res.status(500).json({ error: "Error interno del servidor" });
+    }
+};
